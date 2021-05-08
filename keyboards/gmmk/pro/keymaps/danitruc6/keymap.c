@@ -85,31 +85,22 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 
 */
 
-//Change the functionality of the encoder based on a LCTL Key press
+//Change the functionality of the encoder based on a CTL Key press
 void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {  // First encoder
-        if (get_mods() & MOD_MASK_CTRL) {  // If a CTRL is being held
-            uint8_t mod_state = get_mods();// Store which mods are held
-            del_mods(MOD_MASK_CTRL);       // Ignore all CTRL keys
-            if (clockwise) {
-                tap_code(KC_WH_D);         // PGDN on clockwise turn
-            } else {
-                tap_code(KC_WH_U);         // PGUP on counter-clockwise
-            }
-            set_mods(mod_state);           // Add back CTRL key(s)
-
-        } else {                     // If no CTRL is held
-            if (clockwise) {
-                tap_code(KC_VOLU);   // VOLUMEUP on clockwise turn
-            } else {
-                tap_code(KC_VOLD);   // VOLUMEDOWN on counterclockwise
-            }
-        }
-    } else if (index == 1) {  // If you have a second encoder
+    if (get_mods() & MOD_MASK_CTRL) {  // If a CTRL is being held
+        uint8_t mod_state = get_mods();// Store which mods are held
+        del_mods(MOD_MASK_CTRL);       // Ignore all CTRL keys
         if (clockwise) {
-            tap_code(KC_DOWN);
+            tap_code(KC_WH_D);         // Scroll Up on clockwise turn
         } else {
-            tap_code(KC_UP);
+            tap_code(KC_WH_U);         // Scroll Down on counter-clockwise
+        }
+        set_mods(mod_state);           // Add back CTRL key(s)
+    } else {                     // If no CTRL is held
+        if (clockwise) {
+            tap_code(KC_VOLU);   // Scroll Up/Down on clockwise turn
+        } else {
+            tap_code(KC_VOLD);   // VOLUMEDOWN on counterclockwise
         }
     }
 }
