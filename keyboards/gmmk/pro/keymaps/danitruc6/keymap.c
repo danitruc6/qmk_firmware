@@ -67,9 +67,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         set_mods(mod_state);           // Add back CTRL key(s)
     } else {                           // If no CTRL is held
         if (clockwise) {
-            tap_code(KC_VOLU);   // VOLUMEUP on clockwise turn
+            tap_code(KC_VOLU);         // VOLUMEUP on clockwise turn
         } else {
-            tap_code(KC_VOLD);   // VOLUMEDOWN on counterclockwise
+            tap_code(KC_VOLD);         // VOLUMEDOWN on counterclockwise
         }
     }
 }
