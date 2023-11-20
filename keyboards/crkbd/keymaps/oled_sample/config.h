@@ -49,3 +49,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 17
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+// Haptic feedback settings
+#ifdef HAPTIC_ENABLE
+	#define FB_ERM_LRA 1
+	#define FB_BRAKEFACTOR 2	// For 1x:0, 2x:1, 3x:2, 4x:3, 6x:4, 8x:5, 16x:6, Disable Braking:7
+	#define FB_LOOPGAIN 0 		// For  Low:0, Medium:1, High:2, Very High:3
+
+	// Refer to datasheet for the optimal setting for specific motors.
+	#define RATED_VOLTAGE 2 //2Vrms per ELV1411A datasheet, which is the LRA used for the Pimoroni Haptic Bzzz driver DRV2605.
+	#define V_PEAK 2.0		//Per QMK docs.
+	#define V_RMS 2.0 		//Per ELV1411A datasheet.
+	#define F_LRA 150 		//Resonant frequency per ELV1411A datasheet.
+
+	//#define HAPTIC_OFF_IN_LOW_POWER 1 //Turn off haptic feedback while sleeping (+54).
+
+	//#define NO_HAPTIC_NUMERIC
+	//#define NO_HAPTIC_NAV
+#endif
